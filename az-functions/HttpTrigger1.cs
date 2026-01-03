@@ -18,6 +18,8 @@ namespace myfirstfunction
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
+            log.LogInformation("Function executed successfully at {time}", DateTime.Now);
+
 
             string name = req.Query["name"];
 
@@ -30,6 +32,7 @@ namespace myfirstfunction
                 : $"Hello, {name}. This HTTP triggered function executed successfully.";
 
             return new OkObjectResult(responseMessage);
+
         }
     }
 }
