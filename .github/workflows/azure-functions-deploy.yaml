@@ -1,9 +1,9 @@
-name: Deploy Azure Function App
+name: Deploy Azure Function App via Zip Deploy
 
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   build-and-deploy:
@@ -16,20 +16,13 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '6.0.x'  
-
-    - name: Install Azure Functions Core Tools
-      run: |
-        npm install -g azure-functions-core-tools@4 --unsafe-perm true
-
-    - name: Build project
-      run: dotnet build ./az-functions/az-204.csproj --configuration Release
+        dotnet-version: '8.0'
 
     - name: Publish project
-      run: dotnet publish ./az-functions/az-204.csproj --configuration Release --output ./az-functions/publish 
+      run: dotnet publish ./az-functions/az-204.csproj --configuration Release --output ./az-functions/publish
 
-    - name: Deploy to Azure Functions
-      uses: azure/functions-action@v1
+    - name: Deploy to Azure using Zip Deploy
+      uses: azure/webapps-deploy@v2
       with:
         app-name: myfirsttryfunctiondotnet
         package: ./az-functions/publish
