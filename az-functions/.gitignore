@@ -1,0 +1,20 @@
+# Build output
+bin/
+obj/
+
+# VS Code settings
+.vscode/
+
+# User-specific files
+*.user
+*.suo
+
+# Local Azure Functions settings (contains secrets!)
+local.settings.json
+
+# Logs
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
